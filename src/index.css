@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-light: #F5F3EE;
+    --bg-dark: #111214;
+    --text-primary: #171717;
+    --text-muted: #6F6F6A;
+    --border-light: #DCD9D2;
+    --accent: #B7A98F;
+  }
+  
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #F5F3EE;
+    color: #171717;
+    color-scheme: light;
+  }
+}
+
+/* Custom Refined Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F3EE;
+}
+::-webkit-scrollbar-thumb {
+  background: #DCD9D2;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B7A98F;
+}
+
+/* Lenis Smooth Scroll resets */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Quiet Luxury Surface Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid #DCD9D2;
+}
+
+.glass-panel-dark {
+  background: rgba(24, 25, 29, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: #B7A98F;
+  box-shadow: 0 20px 40px -15px rgba(23, 23, 23, 0.04);
+}
+
+.glass-panel-dark-hover {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-dark-hover:hover {
+  background: rgba(28, 29, 34, 0.95);
+  border-color: rgba(183, 169, 143, 0.3);
+}
+
+.text-muted {
+  color: #6F6F6A;
+}
+
+/* 3D Perspective & Hardware Acceleration */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
