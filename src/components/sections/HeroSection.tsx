@@ -1,9 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, ArrowDown, Cpu, RefreshCw, Terminal, Sparkles } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, Cpu, RefreshCw, Compass, Sparkles } from 'lucide-react';
 import { HeroCanvas } from '../3d/HeroCanvas';
 import { playHoverSound, playClickSound } from '../../utils/audio';
-import confetti from 'canvas-confetti';
 
 interface HeroSectionProps {
   setActiveTab: (tab: string) => void;
@@ -26,50 +25,38 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setActiveTab, onExplor
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const handlePop = () => {
-    setIsPopped(true);
-    try {
-      confetti({
-        particleCount: 45,
-        spread: 65,
-        origin: { y: 0.5, x: 0.5 },
-        colors: ['#B7A98F', '#171717', '#E5B89B', '#FAF8F5'],
-        disableForReducedMotion: true,
-      });
-    } catch {
-      // fallback
-    }
-  };
-
   const handleReset = () => {
     playClickSound();
     setIsPopped(false);
   };
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-between pt-36 pb-16 px-8 overflow-hidden bg-[#F5F3EE] text-[#171717]">
-      {/* Technical 3D Holographic Coding & Laptop Canvas */}
-      <HeroCanvas mousePos={mousePos} isPopped={isPopped} onPop={handlePop} />
+    <section className="relative w-full min-h-screen flex flex-col justify-between pt-32 pb-16 px-8 overflow-hidden bg-[#F4F1EA] text-[#242321]">
+      {/* Tactile Grid Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(#B8B3A9_1px,transparent_1px)] [background-size:32px_32px] opacity-30 pointer-events-none" />
 
-      {/* Floating 3D Control Badge */}
-      <div className="absolute top-28 right-8 z-20">
+      {/* 3D WebGL Art Sculpture Canvas */}
+      <HeroCanvas mousePos={mousePos} isPopped={isPopped} onPop={() => setIsPopped(true)} />
+
+      {/* Top Asymmetric Metadata Badge */}
+      <div className="absolute top-28 right-8 z-20 hidden sm:block">
         <AnimatePresence mode="wait">
           {!isPopped ? (
             <motion.button
-              key="pop-btn"
+              key="inspect-btn"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               onClick={() => {
                 playClickSound();
-                handlePop();
+                setIsPopped(true);
               }}
               onMouseEnter={playHoverSound}
-              className="flex items-center gap-2 px-4 py-2 rounded-full glass-panel hover:border-[#171717]/40 text-[#171717] font-mono text-xs shadow-sm transition-all hover:scale-105"
-              data-cursor="OVERCLOCK"
+              className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#B8B3A9]/60 bg-[#F4F1EA]/90 backdrop-blur-md text-[#242321] font-mono text-xs shadow-sm hover:border-[#737565] transition-all hover:scale-105"
+              data-cursor="INSPECT"
             >
-              <Cpu className="w-3.5 h-3.5 text-[#B7A98F] animate-pulse" />
-              <span>CLICK CORE TO OVERCLOCK</span>
+              <Cpu className="w-3.5 h-3.5 text-[#9A8064]" />
+              <span>INTERACT WITH 3D ARTIFACT</span>
             </motion.button>
           ) : (
             <motion.button
@@ -79,83 +66,57 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setActiveTab, onExplor
               exit={{ opacity: 0, scale: 0.9 }}
               onClick={handleReset}
               onMouseEnter={playHoverSound}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#171717] text-[#F5F3EE] font-mono text-xs shadow-md transition-all hover:scale-105 hover:bg-[#26272B]"
-              data-cursor="RECONNECT"
+              className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#242321] text-[#F4F1EA] font-mono text-xs shadow-md transition-all hover:scale-105 hover:bg-[#737565]"
+              data-cursor="RESET"
             >
-              <RefreshCw className="w-3.5 h-3.5 text-[#B7A98F] animate-spin" style={{ animationDuration: '4s' }} />
-              <span>RECONNECT CODE PIPELINE</span>
+              <RefreshCw className="w-3.5 h-3.5 text-[#9A8064] animate-spin" style={{ animationDuration: '4s' }} />
+              <span>RESET SCULPTURE STATE</span>
             </motion.button>
           )}
         </AnimatePresence>
       </div>
 
-      {/* Main Composition */}
+      {/* Main Asymmetric Editorial Hero Composition (Prompt Section 10 & 11) */}
       <div className="max-w-7xl mx-auto w-full relative z-10 my-auto pointer-events-auto">
         <div className="max-w-4xl space-y-8">
-          {/* Eyebrow */}
+          {/* Eyebrow Tag */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-xs font-mono text-[#6F6F6A] uppercase tracking-widest font-medium flex items-center gap-2"
+            className="text-xs font-mono text-[#918B80] uppercase tracking-widest font-medium flex items-center gap-3"
           >
-            <Terminal className="w-3.5 h-3.5 text-[#B7A98F]" />
-            <span>[ CREATIVE TECHNOLOGY & CODE STUDIO ]</span>
+            <span className="w-2 h-2 rounded-full bg-[#737565]" />
+            <span>CREATIVE TECHNOLOGY STUDIO // 2026</span>
           </motion.div>
 
-          {/* Headline */}
-          <div className="overflow-hidden">
-            <motion.h1
-              initial={{ y: '100%' }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight font-display text-[#171717] leading-[0.95]"
-            >
-              WE BUILD DIGITAL EXPERIENCES <br />
-              <span className="text-[#6F6F6A]">THAT MOVE BUSINESSES FORWARD.</span>
-            </motion.h1>
-          </div>
-
-          {/* Sub-headline Services Pills */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+          {/* Giant Editorial Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="flex flex-wrap items-center gap-3 text-xs font-mono text-[#171717]"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-display text-5xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-[#242321] leading-[0.98]"
           >
-            <span className="px-3 py-1 rounded-full glass-panel border border-[#DCD9D2] flex items-center gap-1.5 bg-[#FAF8F5]">
-              <Sparkles className="w-3 h-3 text-[#B7A98F]" /> Web Development
-            </span>
-            <span className="text-[#6F6F6A]">•</span>
-            <span className="px-3 py-1 rounded-full glass-panel border border-[#DCD9D2] flex items-center gap-1.5 bg-[#FAF8F5]">
-              <Sparkles className="w-3 h-3 text-[#B7A98F]" /> AI & Automation
-            </span>
-            <span className="text-[#6F6F6A]">•</span>
-            <span className="px-3 py-1 rounded-full glass-panel border border-[#DCD9D2] flex items-center gap-1.5 bg-[#FAF8F5]">
-              <Sparkles className="w-3 h-3 text-[#B7A98F]" /> 3D WebGL Spaces
-            </span>
-            <span className="text-[#6F6F6A]">•</span>
-            <span className="px-3 py-1 rounded-full glass-panel border border-[#DCD9D2] flex items-center gap-1.5 bg-[#FAF8F5]">
-              <Sparkles className="w-3 h-3 text-[#B7A98F]" /> Digital Products
-            </span>
-          </motion.div>
+            WE BUILD <br />
+            <span className="text-[#918B80] font-normal italic">DIGITAL</span> EXPERIENCES<span className="text-[#9A8064]">.</span>
+          </motion.h1>
 
-          {/* Supporting Copy */}
+          {/* Supporting Subheading Narrative */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-[#6F6F6A] text-lg sm:text-xl max-w-2xl font-light leading-relaxed"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-base sm:text-lg text-[#918B80] leading-relaxed max-w-xl font-normal"
           >
-            Bespoke web applications, high-performance WebGL spaces, custom AI workflow pipelines, and software platforms engineered for ambitious brands.
+            An experimental growth partner engineering bespoke web platforms, custom 3D web software, and high-conversion assets for forward-thinking enterprises.
           </motion.p>
 
           {/* Action CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap items-center gap-5 pt-4"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-wrap items-center gap-4 pt-4"
           >
             <button
               onClick={() => {
@@ -163,11 +124,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setActiveTab, onExplor
                 onExploreWorkClick();
               }}
               onMouseEnter={playHoverSound}
-              className="px-8 py-4 rounded-full bg-[#171717] hover:bg-[#26272B] text-[#F5F3EE] font-semibold text-xs tracking-wider uppercase flex items-center gap-3 transition-all hover:scale-[1.02] shadow-sm"
-              data-cursor="EXPLORE"
+              className="flex items-center gap-3 px-8 py-4 rounded-full bg-[#242321] text-[#F4F1EA] hover:bg-[#737565] active:bg-[#A47F68] font-semibold text-xs tracking-wider uppercase transition-all hover:scale-105 shadow-sm"
+              data-cursor="WORK"
             >
-              <span>EXPLORE OUR WORK</span>
-              <ArrowUpRight className="w-4 h-4 text-[#B7A98F]" />
+              <span>EXPLORE SELECTED WORK</span>
+              <ArrowDown className="w-4 h-4 text-[#9A8064]" />
             </button>
 
             <button
@@ -176,24 +137,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setActiveTab, onExplor
                 setActiveTab('contact');
               }}
               onMouseEnter={playHoverSound}
-              className="px-8 py-4 rounded-full glass-panel hover:border-[#171717]/40 text-[#171717] font-semibold text-xs tracking-wider uppercase flex items-center gap-3 transition-all hover:scale-[1.02]"
-              data-cursor="START"
+              className="flex items-center gap-2 px-8 py-4 rounded-full border border-[#B8B3A9] bg-[#F4F1EA]/80 hover:bg-[#E5E1D8] text-[#242321] font-semibold text-xs tracking-wider uppercase transition-all"
+              data-cursor="CONSULT"
             >
-              <span>START A PROJECT</span>
-              <ArrowUpRight className="w-4 h-4 text-[#171717]" />
+              <span>GET IN TOUCH</span>
+              <ArrowUpRight className="w-4 h-4 text-[#918B80]" />
             </button>
           </motion.div>
         </div>
       </div>
 
-      {/* Bottom Subtle Scroll Indicator */}
-      <div className="max-w-7xl mx-auto w-full relative z-10 flex justify-between items-end pt-8 border-t border-[#DCD9D2] text-xs font-mono text-[#6F6F6A]">
-        <div className="flex items-center gap-2">
-          <ArrowDown className="w-3.5 h-3.5 text-[#171717]" />
-          <span>SCROLL TO DISCOVER ARCHITECTURE</span>
+      {/* Bottom Editorial Coordinates & Meta Footer */}
+      <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between border-t border-[#B8B3A9]/40 pt-6 gap-4 text-xs font-mono text-[#918B80]">
+        <div className="flex items-center gap-4">
+          <Compass className="w-3.5 h-3.5 text-[#9A8064]" />
+          <span>[37.7749° N, 122.4194° W]</span>
+          <span>•</span>
+          <span>SYSTEM.v26 ACTIVE</span>
         </div>
-        <div className="hidden sm:block uppercase tracking-widest text-[11px] text-[#6F6F6A]">
-          HIGH-PERFORMANCE ENGINEERING & DIGITAL ART.
+
+        <div className="flex items-center gap-6">
+          <span>SCROLL TO DISCOVER</span>
+          <div className="w-12 h-[1px] bg-[#918B80]" />
         </div>
       </div>
     </section>

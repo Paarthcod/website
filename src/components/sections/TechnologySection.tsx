@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import { TECH_CATEGORIES, type TechCategory } from '../../data/agencyData';
 import { playHoverSound, playClickSound } from '../../utils/audio';
+import { Cpu, Terminal, Layers } from 'lucide-react';
 
 export const TechnologySection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<TechCategory>(TECH_CATEGORIES[0]);
 
   return (
-    <section className="py-28 px-8 relative border-t border-[#DCD9D2] bg-[#F5F3EE] overflow-hidden text-[#171717]">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section className="py-32 px-8 relative border-t border-[#242321] bg-[#151514] text-[#F4F1EA] overflow-hidden">
+      {/* Subtle Grid Accent */}
+      <div className="absolute inset-0 bg-[radial-gradient(rgba(184,179,169,0.12)_0.75px,transparent_0.75px)] [background-size:28px_28px] opacity-40 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#DCD9D2] pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#242321] pb-8">
           <div>
-            <span className="text-xs font-mono text-[#6F6F6A] uppercase tracking-widest">[ TECH ARCHITECTURE ]</span>
-            <h2 className="text-4xl sm:text-6xl font-bold font-display text-[#171717] mt-2">
-              TECHNOLOGY CAPABILITIES.
+            <span className="text-xs font-mono text-[#9A8064] uppercase tracking-widest">[ 05 // SYSTEM INFRASTRUCTURE ]</span>
+            <h2 className="text-4xl sm:text-6xl font-semibold font-display text-[#F4F1EA] mt-2 tracking-tight">
+              GROWTH STACK<span className="text-[#9A8064]">.</span>
             </h2>
           </div>
-          <p className="text-[#6F6F6A] text-sm max-w-md font-light">
-            Explore our technology matrix across engineering, 3D WebGL graphics, and automated artificial intelligence pipelines.
+          <p className="text-[#918B80] text-sm max-w-md leading-relaxed font-normal">
+            Zero bloat, zero technical debt. Exploring the technology matrix across frontend engines, 3D graphics, and tracking pipelines.
           </p>
         </div>
 
@@ -38,8 +42,8 @@ export const TechnologySection: React.FC = () => {
                 }}
                 className={`px-6 py-2.5 rounded-full font-mono text-xs tracking-wider transition-all border ${
                   isSelected
-                    ? 'bg-[#171717] text-[#F5F3EE] font-semibold border-[#171717]'
-                    : 'glass-panel text-[#6F6F6A] border-[#DCD9D2] hover:border-[#171717]/40 hover:text-[#171717]'
+                    ? 'bg-[#F4F1EA] text-[#242321] font-semibold border-[#F4F1EA] shadow-md'
+                    : 'bg-[#242321]/60 text-[#918B80] border-[#242321] hover:border-[#737565] hover:text-[#F4F1EA]'
                 }`}
               >
                 {cat.category}
@@ -54,20 +58,20 @@ export const TechnologySection: React.FC = () => {
             <div
               key={tech.name}
               onMouseEnter={playHoverSound}
-              className="glass-panel p-6 rounded-2xl border border-[#DCD9D2] space-y-3 glass-panel-hover"
+              className="p-6 rounded-2xl bg-[#242321]/80 border border-[#242321] hover:border-[#737565] space-y-4 transition-all"
             >
               <div className="flex justify-between items-center">
-                <h3 className="text-lg font-semibold font-display text-[#171717]">{tech.name}</h3>
-                <span className="text-[10px] font-mono text-[#171717] bg-[#FAF8F5] px-2 py-0.5 rounded border border-[#DCD9D2]">
+                <h3 className="text-lg font-semibold font-display text-[#F4F1EA]">{tech.name}</h3>
+                <span className="text-[10px] font-mono text-[#9A8064] bg-[#151514] px-2.5 py-0.5 rounded border border-[#242321]">
                   {activeCategory.category}
                 </span>
               </div>
-              <p className="text-xs text-[#6F6F6A] font-light leading-relaxed">
+              <p className="text-xs text-[#918B80] leading-relaxed">
                 {tech.description}
               </p>
-              <div className="pt-2 flex items-center gap-2 text-[10px] font-mono text-[#6F6F6A]">
-                <span>CONNECTED:</span>
-                <span className="text-[#171717] font-medium">{tech.connectedTo.join(', ')}</span>
+              <div className="pt-2 flex items-center gap-2 text-[10px] font-mono text-[#918B80]">
+                <span>INTEGRATES:</span>
+                <span className="text-[#F4F1EA] font-medium">{tech.connectedTo.join(' • ')}</span>
               </div>
             </div>
           ))}

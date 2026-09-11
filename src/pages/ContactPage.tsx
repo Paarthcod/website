@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { ContactCanvas } from '../components/3d/ContactCanvas';
 import { AGENCY_INFO } from '../data/agencyData';
 import { playHoverSound, playClickSound, playSuccessSound } from '../utils/audio';
-import { ArrowUpRight, CheckCircle2, Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Mail, Phone, MapPin, Globe } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -12,8 +11,8 @@ export const ContactPage: React.FC = () => {
     company: '',
     email: '',
     phone: '',
-    projectType: 'Website',
-    budget: '₹1L–₹3L',
+    projectType: 'Business Website',
+    budget: '$10k–$25k',
     message: '',
   });
 
@@ -22,22 +21,20 @@ export const ContactPage: React.FC = () => {
   const [errorMsg, setErrorMsg] = useState('');
 
   const projectTypes = [
-    'Website',
-    '3D Experience',
+    'Business Website',
+    'Custom 3D Experience',
     'Web Application',
-    'AI / Automation',
-    'E-Commerce',
-    'Dashboard',
-    'Digital Product',
-    'Other'
+    'SEO & Speed Overhaul',
+    'Google & Meta Ads',
+    'Full Digital Growth Stack'
   ];
 
   const budgets = [
-    '₹25K–₹50K',
-    '₹50K–₹1L',
-    '₹1L–₹3L',
-    '₹3L+',
-    "LET'S DISCUSS"
+    '$5k–$10k',
+    '$10k–$25k',
+    '$25k–$50k',
+    '$50k+',
+    'Monthly Growth Partnership'
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -59,132 +56,119 @@ export const ContactPage: React.FC = () => {
 
       try {
         confetti({
-          particleCount: 70,
-          spread: 55,
+          particleCount: 50,
+          spread: 70,
           origin: { y: 0.6 },
-          colors: ['#B7A98F', '#171717', '#DCD9D2'],
+          colors: ['#737565', '#9A8064', '#242321'],
         });
       } catch {
-        // Ignore fallback
+        // fallback
       }
-    }, 900);
+    }, 800);
   };
 
   return (
-    <div className="w-full pt-36 pb-28 px-8 relative overflow-hidden min-h-screen bg-[#F5F3EE] text-[#171717]">
-      {/* Background Glass Canvas */}
-      <ContactCanvas />
+    <div className="w-full pt-36 pb-28 px-8 space-y-16 max-w-7xl mx-auto bg-[#F4F1EA] text-[#242321]">
+      {/* Header */}
+      <div className="space-y-4 max-w-3xl">
+        <span className="text-xs font-mono text-[#737565] uppercase tracking-widest">[ 07 // STRATEGIC ENGAGEMENT ]</span>
+        <h1 className="text-5xl sm:text-7xl font-semibold tracking-tight font-display text-[#242321]">
+          START A PROJECT<span className="text-[#9A8064]">.</span>
+        </h1>
+        <p className="text-[#918B80] text-lg leading-relaxed font-normal">
+          If you are ready to evaluate your existing digital presence, audit your technical stack, or engineer a new web platform from the ground up, connect with our engineering team.
+        </p>
+      </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
-        {/* Left Info Column */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* Left Column: Direct Access Channels */}
         <div className="lg:col-span-5 space-y-8">
-          <div className="space-y-4">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-xs font-mono text-[#6F6F6A] uppercase tracking-widest font-medium"
-            >
-              [ PROJECT INQUIRY ]
-            </motion.div>
+          <div className="p-8 rounded-3xl bg-white border border-[#B8B3A9]/60 shadow-sm space-y-6">
+            <h3 className="font-mono text-xs font-bold text-[#9A8064] uppercase tracking-wider">
+              DIRECT ACCESS CHANNELS
+            </h3>
 
-            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight font-display text-[#171717] leading-none">
-              HAVE AN IDEA? <br />
-              <span className="text-[#6F6F6A]">LET'S BUILD IT.</span>
-            </h1>
+            <div className="space-y-4 text-xs font-mono">
+              <div className="flex items-center gap-3">
+                <Mail className="w-4 h-4 text-[#737565]" />
+                <div>
+                  <div className="text-[10px] text-[#918B80]">DIRECT INQUIRIES</div>
+                  <div className="text-[#242321] font-semibold">hello@kinetixgrowth.com</div>
+                </div>
+              </div>
 
-            <p className="text-[#6F6F6A] text-base sm:text-lg font-light leading-relaxed">
-              Tell us what you're building. We'll figure out how to make it better.
-            </p>
+              <div className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-[#737565]" />
+                <div>
+                  <div className="text-[10px] text-[#918B80]">STRATEGY DESK</div>
+                  <div className="text-[#242321] font-semibold">+1 (555) 019-2834 / +91 98765 43210</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Globe className="w-4 h-4 text-[#737565]" />
+                <div>
+                  <div className="text-[10px] text-[#918B80]">DIGITAL PORTAL</div>
+                  <div className="text-[#242321] font-semibold">www.kinetixgrowth.com</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 pt-2 border-t border-[#B8B3A9]/30">
+                <MapPin className="w-4 h-4 text-[#737565]" />
+                <div>
+                  <div className="text-[10px] text-[#918B80]">HEADQUARTERS</div>
+                  <div className="text-[#242321] font-semibold">Executive Suite 400, Innovation Tower, Tech District</div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-4 pt-6 border-t border-[#DCD9D2] text-sm font-mono">
-            <div className="glass-panel p-4 rounded-2xl border border-[#DCD9D2] flex items-center gap-4">
-              <Mail className="w-5 h-5 text-[#171717]" />
-              <div>
-                <div className="text-xs text-[#6F6F6A]">EMAIL DIRECT</div>
-                <div className="text-[#171717] font-semibold">{AGENCY_INFO.email}</div>
-              </div>
-            </div>
-
-            <div className="glass-panel p-4 rounded-2xl border border-[#DCD9D2] flex items-center gap-4">
-              <Phone className="w-5 h-5 text-[#171717]" />
-              <div>
-                <div className="text-xs text-[#6F6F6A]">PHONE DIRECT</div>
-                <div className="text-[#171717] font-semibold">{AGENCY_INFO.phone}</div>
-              </div>
-            </div>
-
-            <div className="glass-panel p-4 rounded-2xl border border-[#DCD9D2] flex items-center gap-4">
-              <MapPin className="w-5 h-5 text-[#171717]" />
-              <div>
-                <div className="text-xs text-[#6F6F6A]">STUDIO</div>
-                <div className="text-[#171717] font-semibold">{AGENCY_INFO.address}</div>
-              </div>
-            </div>
+          <div className="p-8 rounded-3xl bg-[#242321] text-[#F4F1EA] space-y-4">
+            <div className="text-xs font-mono text-[#9A8064] uppercase">WHAT HAPPENS NEXT</div>
+            <ol className="space-y-3 text-xs">
+              <li className="flex items-start gap-2">
+                <span className="font-mono font-bold text-[#9A8064]">1.</span>
+                <span><strong>Initial Discovery Call (20 Mins):</strong> We review your current assets, business targets, and key bottlenecks.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="font-mono font-bold text-[#9A8064]">2.</span>
+                <span><strong>Technical & Growth Audit:</strong> We analyze code health, SEO indexability, speed metrics, and ad tracking.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="font-mono font-bold text-[#9A8064]">3.</span>
+                <span><strong>Custom Asset Proposal:</strong> We deliver a complete architecture blueprint and timeline.</span>
+              </li>
+            </ol>
           </div>
         </div>
 
-        {/* Right Form Card */}
+        {/* Right Column: Direct Form Submission */}
         <div className="lg:col-span-7">
-          <div className="glass-panel p-8 sm:p-12 rounded-3xl border border-[#DCD9D2] space-y-8 shadow-sm relative bg-[#FAF8F5]">
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="py-12 text-center space-y-6"
-              >
-                <div className="w-16 h-16 rounded-full bg-[#171717] text-[#F5F3EE] border border-[#171717] flex items-center justify-center mx-auto shadow-sm">
-                  <CheckCircle2 className="w-8 h-8 text-[#B7A98F]" />
-                </div>
-                <h3 className="text-3xl font-semibold font-display text-[#171717]">PROJECT INQUIRY RECEIVED</h3>
-                <p className="text-[#6F6F6A] max-w-md mx-auto text-sm font-light leading-relaxed">
-                  Thank you, <span className="text-[#171717] font-medium">{formData.name}</span>. Our technical director will review your brief and respond within 12 hours.
-                </p>
-                <button
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormData({
-                      name: '',
-                      company: '',
-                      email: '',
-                      phone: '',
-                      projectType: 'Website',
-                      budget: '₹1L–₹3L',
-                      message: '',
-                    });
-                  }}
-                  className="px-6 py-3 rounded-full bg-[#F5F3EE] hover:bg-[#E5E3DD] border border-[#DCD9D2] text-[#171717] font-mono text-xs uppercase tracking-wider transition-colors"
-                >
-                  SEND ANOTHER INQUIRY
-                </button>
-              </motion.div>
-            ) : (
+          <div className="p-8 sm:p-12 rounded-3xl bg-white border border-[#B8B3A9]/60 shadow-md">
+            {!submitted ? (
               <form onSubmit={handleSubmit} className="space-y-6">
+                <h3 className="font-display text-2xl font-semibold text-[#242321]">
+                  PROJECT CONSULTATION FORM
+                </h3>
+
                 {errorMsg && (
-                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-700 text-xs font-mono">
+                  <div className="p-3 rounded-lg bg-[#A47F68]/15 border border-[#A47F68] text-xs font-mono text-[#242321]">
                     {errorMsg}
                   </div>
                 )}
 
-                {/* 1. Project Type Selector */}
-                <div className="space-y-3">
-                  <label className="block text-xs font-mono text-[#6F6F6A] uppercase tracking-widest">
-                    1. PROJECT TYPE
-                  </label>
+                <div className="space-y-2">
+                  <label className="text-xs font-mono text-[#737565] uppercase">01 // SELECT ASSET TYPE</label>
                   <div className="flex flex-wrap gap-2">
                     {projectTypes.map((type) => (
                       <button
                         type="button"
                         key={type}
-                        onClick={() => {
-                          playClickSound();
-                          setFormData({ ...formData, projectType: type });
-                        }}
-                        onMouseEnter={playHoverSound}
-                        className={`px-4 py-2 rounded-full font-mono text-xs transition-all border ${
+                        onClick={() => setFormData({ ...formData, projectType: type })}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-mono border transition-all ${
                           formData.projectType === type
-                            ? 'bg-[#171717] text-[#F5F3EE] font-semibold border-[#171717]'
-                            : 'bg-[#F5F3EE] text-[#6F6F6A] border-[#DCD9D2] hover:border-[#171717]/40 hover:text-[#171717]'
+                            ? 'bg-[#242321] text-[#F4F1EA] border-[#242321]'
+                            : 'bg-[#F4F1EA] text-[#242321] border-[#B8B3A9]/50 hover:border-[#737565]'
                         }`}
                       >
                         {type}
@@ -193,25 +177,18 @@ export const ContactPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* 2. Budget Selector */}
-                <div className="space-y-3">
-                  <label className="block text-xs font-mono text-[#6F6F6A] uppercase tracking-widest">
-                    2. ESTIMATED BUDGET
-                  </label>
+                <div className="space-y-2">
+                  <label className="text-xs font-mono text-[#737565] uppercase">02 // BUDGET RANGE</label>
                   <div className="flex flex-wrap gap-2">
                     {budgets.map((b) => (
                       <button
                         type="button"
                         key={b}
-                        onClick={() => {
-                          playClickSound();
-                          setFormData({ ...formData, budget: b });
-                        }}
-                        onMouseEnter={playHoverSound}
-                        className={`px-4 py-2 rounded-full font-mono text-xs transition-all border ${
+                        onClick={() => setFormData({ ...formData, budget: b })}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-mono border transition-all ${
                           formData.budget === b
-                            ? 'bg-[#171717] text-[#F5F3EE] font-semibold border-[#171717]'
-                            : 'bg-[#F5F3EE] text-[#6F6F6A] border-[#DCD9D2] hover:border-[#171717]/40 hover:text-[#171717]'
+                            ? 'bg-[#242321] text-[#F4F1EA] border-[#242321]'
+                            : 'bg-[#F4F1EA] text-[#242321] border-[#B8B3A9]/50 hover:border-[#737565]'
                         }`}
                       >
                         {b}
@@ -220,64 +197,40 @@ export const ContactPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Inputs Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="block text-xs font-mono text-[#6F6F6A] uppercase">NAME *</label>
+                  <div className="space-y-1">
+                    <label className="text-xs font-mono text-[#737565]">FULL NAME *</label>
                     <input
                       type="text"
                       required
-                      placeholder="Alex Mercer"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-[#F5F3EE] border border-[#DCD9D2] text-[#171717] placeholder-[#6F6F6A]/50 focus:outline-none focus:border-[#171717] text-sm"
+                      placeholder="Jane Doe"
+                      className="w-full p-3 rounded-xl bg-[#F4F1EA] border border-[#B8B3A9]/60 text-xs font-mono text-[#242321] focus:outline-none focus:border-[#737565]"
                     />
                   </div>
-
-                  <div className="space-y-2">
-                    <label className="block text-xs font-mono text-[#6F6F6A] uppercase">COMPANY / BRAND</label>
-                    <input
-                      type="text"
-                      placeholder="Acme Studio"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-[#F5F3EE] border border-[#DCD9D2] text-[#171717] placeholder-[#6F6F6A]/50 focus:outline-none focus:border-[#171717] text-sm"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="block text-xs font-mono text-[#6F6F6A] uppercase">EMAIL ADDRESS *</label>
+                  <div className="space-y-1">
+                    <label className="text-xs font-mono text-[#737565]">WORK EMAIL *</label>
                     <input
                       type="email"
                       required
-                      placeholder="alex@acme.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-[#F5F3EE] border border-[#DCD9D2] text-[#171717] placeholder-[#6F6F6A]/50 focus:outline-none focus:border-[#171717] text-sm"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="block text-xs font-mono text-[#6F6F6A] uppercase">PHONE NUMBER</label>
-                    <input
-                      type="tel"
-                      placeholder="+1 (555) 000-0000"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-[#F5F3EE] border border-[#DCD9D2] text-[#171717] placeholder-[#6F6F6A]/50 focus:outline-none focus:border-[#171717] text-sm"
+                      placeholder="jane@company.com"
+                      className="w-full p-3 rounded-xl bg-[#F4F1EA] border border-[#B8B3A9]/60 text-xs font-mono text-[#242321] focus:outline-none focus:border-[#737565]"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="block text-xs font-mono text-[#6F6F6A] uppercase">PROJECT DETAILS & GOALS *</label>
+                <div className="space-y-1">
+                  <label className="text-xs font-mono text-[#737565]">PROJECT DETAILS *</label>
                   <textarea
                     rows={4}
                     required
-                    placeholder="Tell us about your project requirements, timeline, and goals..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl bg-[#F5F3EE] border border-[#DCD9D2] text-[#171717] placeholder-[#6F6F6A]/50 focus:outline-none focus:border-[#171717] text-sm resize-none"
+                    placeholder="Describe your current web presence, targets, and goals..."
+                    className="w-full p-3 rounded-xl bg-[#F4F1EA] border border-[#B8B3A9]/60 text-xs font-mono text-[#242321] focus:outline-none focus:border-[#737565]"
                   />
                 </div>
 
@@ -285,19 +238,24 @@ export const ContactPage: React.FC = () => {
                   type="submit"
                   disabled={loading}
                   onMouseEnter={playHoverSound}
-                  className="w-full py-4 rounded-xl bg-[#171717] hover:bg-[#26272B] text-[#F5F3EE] font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all hover:scale-[1.01] disabled:opacity-50 shadow-sm"
-                  data-cursor="SEND"
+                  className="w-full py-4 rounded-full bg-[#242321] text-[#F4F1EA] hover:bg-[#737565] font-semibold text-xs font-mono tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2"
                 >
-                  {loading ? (
-                    <span>TRANSMITTING INQUIRY...</span>
-                  ) : (
-                    <>
-                      <span>START THE CONVERSATION</span>
-                      <ArrowUpRight className="w-4 h-4 text-[#B7A98F]" />
-                    </>
-                  )}
+                  <span>{loading ? 'SUBMITTING...' : 'SUBMIT BLUEPRINT REQUEST'}</span>
+                  <ArrowRight className="w-4 h-4 text-[#9A8064]" />
                 </button>
               </form>
+            ) : (
+              <div className="py-16 text-center space-y-4">
+                <div className="w-12 h-12 rounded-full bg-[#737565] text-[#F4F1EA] mx-auto flex items-center justify-center">
+                  <CheckCircle2 className="w-6 h-6 text-[#F4F1EA]" />
+                </div>
+                <h3 className="font-display text-3xl font-semibold text-[#242321]">
+                  CONSULTATION REQUEST SUBMITTED
+                </h3>
+                <p className="text-xs font-mono text-[#918B80] max-w-md mx-auto">
+                  Thank you, {formData.name}. Our engineering desk will review your details and connect with you shortly.
+                </p>
+              </div>
             )}
           </div>
         </div>

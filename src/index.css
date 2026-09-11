@@ -4,18 +4,29 @@
 
 @layer base {
   :root {
-    --bg-light: #F5F3EE;
-    --bg-dark: #111214;
-    --text-primary: #171717;
-    --text-muted: #6F6F6A;
-    --border-light: #DCD9D2;
-    --accent: #B7A98F;
+    --ivory: #F4F1EA;
+    --stone: #E5E1D8;
+    --warm-grey: #B8B3A9;
+    --taupe: #918B80;
+    --charcoal: #242321;
+    --deep-charcoal: #151514;
+    --soft-black: #0D0D0C;
+    --olive: #737565;
+    --clay: #A47F68;
+    --bronze: #9A8064;
+    
+    --bg-light: #F4F1EA;
+    --bg-dark: #151514;
+    --text-primary: #242321;
+    --text-muted: #918B80;
+    --border-light: #B8B3A9;
+    --accent: #737565;
   }
   
   html {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: #F5F3EE;
-    color: #171717;
+    background-color: #F4F1EA;
+    color: #242321;
     color-scheme: light;
   }
 }
@@ -25,14 +36,14 @@
   width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #F5F3EE;
+  background: #F4F1EA;
 }
 ::-webkit-scrollbar-thumb {
-  background: #DCD9D2;
+  background: #B8B3A9;
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B7A98F;
+  background: #737565;
 }
 
 /* Lenis Smooth Scroll resets */
@@ -49,40 +60,50 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
-/* Quiet Luxury Surface Utilities */
+/* Quiet Luxury Tactile Surfaces */
+.bg-tactile-paper {
+  background-color: #F4F1EA;
+  background-image: radial-gradient(#B8B3A9 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+}
+
+.bg-tactile-stone {
+  background-color: #E5E1D8;
+  background-image: radial-gradient(#B8B3A9 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+}
+
+.bg-tactile-dark {
+  background-color: #151514;
+  background-image: radial-gradient(rgba(184, 179, 169, 0.15) 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+}
+
 .glass-panel {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid #DCD9D2;
+  background: rgba(244, 241, 234, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(184, 179, 169, 0.5);
 }
 
 .glass-panel-dark {
-  background: rgba(24, 25, 29, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(21, 21, 20, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(184, 179, 169, 0.15);
 }
 
 .glass-panel-hover {
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-panel-hover:hover {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: #B7A98F;
-  box-shadow: 0 20px 40px -15px rgba(23, 23, 23, 0.04);
-}
-
-.glass-panel-dark-hover {
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.glass-panel-dark-hover:hover {
-  background: rgba(28, 29, 34, 0.95);
-  border-color: rgba(183, 169, 143, 0.3);
+  background: rgba(244, 241, 234, 0.95);
+  border-color: #737565;
+  box-shadow: 0 20px 40px -15px rgba(36, 35, 33, 0.06);
 }
 
 .text-muted {
-  color: #6F6F6A;
+  color: #918B80;
 }
 
 /* 3D Perspective & Hardware Acceleration */

@@ -4,11 +4,13 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { Preloader } from './components/layout/Preloader';
 import { PageTransition } from './components/layout/PageTransition';
+import { CustomCursor } from './components/layout/CustomCursor';
 
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ProjectsPage } from './pages/ProjectsPage';
 import { ContactPage } from './pages/ContactPage';
+import { BrochurePage } from './pages/BrochurePage';
 
 export function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -35,7 +37,10 @@ export function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F5F3EE] text-[#171717] flex flex-col justify-between selection:bg-[#B7A98F] selection:text-[#171717]">
+    <div className="min-h-screen bg-[#F4F1EA] text-[#242321] flex flex-col justify-between selection:bg-[#737565] selection:text-[#F4F1EA]">
+      {/* Custom Soft Following Cursor */}
+      <CustomCursor />
+
       {/* Preloader Counter Screen */}
       <Preloader onComplete={() => setLoading(false)} />
 
@@ -49,6 +54,7 @@ export function App() {
               {activeTab === 'home' && <HomePage setActiveTab={setActiveTab} />}
               {activeTab === 'about' && <AboutPage />}
               {activeTab === 'projects' && <ProjectsPage />}
+              {activeTab === 'brochure' && <BrochurePage />}
               {activeTab === 'contact' && <ContactPage />}
             </PageTransition>
           </main>

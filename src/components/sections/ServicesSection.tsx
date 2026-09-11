@@ -2,31 +2,34 @@ import React, { useState } from 'react';
 import { SERVICES, type Service } from '../../data/agencyData';
 import { ServicesVisual } from '../3d/ServicesVisual';
 import { playHoverSound, playClickSound } from '../../utils/audio';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export const ServicesSection: React.FC = () => {
   const [activeServiceId, setActiveServiceId] = useState<string>(SERVICES[0].id);
 
   return (
-    <section className="py-28 px-8 relative border-t border-[#DCD9D2] bg-[#F5F3EE] overflow-hidden">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section id="services" className="py-32 px-8 relative border-t border-[#B8B3A9]/40 bg-[#E5E1D8] text-[#242321] overflow-hidden">
+      {/* Subtle Paper Grid Texture */}
+      <div className="absolute inset-0 bg-[radial-gradient(#B8B3A9_0.75px,transparent_0.75px)] [background-size:28px_28px] opacity-40 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#DCD9D2] pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#B8B3A9]/50 pb-8">
           <div>
-            <span className="text-xs font-mono text-[#6F6F6A] uppercase tracking-widest">[ WHAT WE DO ]</span>
-            <h2 className="text-4xl sm:text-6xl font-bold font-display text-[#171717] mt-2">
-              OUR CAPABILITIES.
+            <span className="text-xs font-mono text-[#737565] uppercase tracking-widest">[ 03 // CAPABILITIES & ECOSYSTEM ]</span>
+            <h2 className="text-4xl sm:text-6xl font-semibold font-display text-[#242321] mt-2 tracking-tight">
+              CORE SERVICES<span className="text-[#9A8064]">.</span>
             </h2>
           </div>
-          <p className="text-[#6F6F6A] text-sm max-w-md font-light">
-            We architect digital flagships, 3D interactive spaces, and automated AI logic engineered for ambitious brands.
+          <p className="text-[#918B80] text-sm max-w-md leading-relaxed font-normal">
+            A synchronized technical framework for digital dominance—combining custom web architecture, precision performance engineering, and intelligent customer acquisition pipelines.
           </p>
         </div>
 
-        {/* Interactive List + Preview Grid */}
+        {/* Interactive Editorial Expandable Accordion List (Prompt Section 13) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Service Menu */}
-          <div className="lg:col-span-6 space-y-3">
+          <div className="lg:col-span-6 space-y-4">
             {SERVICES.map((service: Service) => {
               const isActive = service.id === activeServiceId;
               return (
@@ -40,34 +43,34 @@ export const ServicesSection: React.FC = () => {
                     playHoverSound();
                     setActiveServiceId(service.id);
                   }}
-                  className={`p-6 rounded-2xl cursor-pointer transition-all duration-300 border ${
+                  className={`p-6 rounded-2xl cursor-pointer transition-all duration-500 border ${
                     isActive
-                      ? 'glass-panel border-[#171717] bg-[#FAF8F5] shadow-sm'
-                      : 'border-[#DCD9D2]/70 hover:border-[#171717]/30 bg-transparent'
+                      ? 'bg-[#F4F1EA] border-[#737565] shadow-md translate-x-2'
+                      : 'border-[#B8B3A9]/40 hover:border-[#737565]/60 bg-white/40 opacity-70 hover:opacity-100'
                   }`}
                   data-cursor={service.title}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <span className={`font-mono text-sm font-semibold ${isActive ? 'text-[#171717]' : 'text-[#6F6F6A]'}`}>
+                      <span className={`font-mono text-xs font-bold ${isActive ? 'text-[#737565]' : 'text-[#918B80]'}`}>
                         {service.number}
                       </span>
-                      <h3 className={`text-xl sm:text-2xl font-semibold font-display ${isActive ? 'text-[#171717]' : 'text-[#6F6F6A]'}`}>
+                      <h3 className={`text-xl sm:text-2xl font-semibold font-display tracking-tight ${isActive ? 'text-[#242321]' : 'text-[#918B80]'}`}>
                         {service.title}
                       </h3>
                     </div>
-                    <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'text-[#171717] translate-x-1.5' : 'text-[#6F6F6A]/50'}`} />
+                    <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'text-[#737565] translate-x-2' : 'text-[#918B80]/50'}`} />
                   </div>
 
                   {isActive && (
-                    <div className="mt-4 pt-4 border-t border-[#DCD9D2] space-y-3">
-                      <p className="text-sm text-[#6F6F6A] font-light leading-relaxed">
+                    <div className="mt-5 pt-4 border-t border-[#B8B3A9]/30 space-y-4">
+                      <p className="text-sm text-[#918B80] leading-relaxed">
                         {service.description}
                       </p>
-                      <div className="grid grid-cols-2 gap-2 pt-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
                         {service.deliverables.map((item, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-xs font-mono text-[#171717]">
-                            <Check className="w-3.5 h-3.5 text-[#B7A98F]" />
+                          <div key={idx} className="flex items-center gap-2 text-xs font-mono text-[#242321]">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#9A8064]" />
                             <span>{item}</span>
                           </div>
                         ))}
@@ -79,7 +82,7 @@ export const ServicesSection: React.FC = () => {
             })}
           </div>
 
-          {/* Right Live 3D Visualizer */}
+          {/* Right Live 3D Visualizer Container */}
           <div className="lg:col-span-6 sticky top-32">
             <ServicesVisual activeServiceId={activeServiceId} />
           </div>

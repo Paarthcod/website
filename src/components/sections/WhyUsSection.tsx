@@ -1,86 +1,90 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ShieldCheck, Zap, Target } from 'lucide-react';
-import { playHoverSound } from '../../utils/audio';
+import { Sparkles, ShieldCheck, Zap, Target, Eye, Compass, Cpu, Layers } from 'lucide-react';
+import { playHoverSound, playClickSound } from '../../utils/audio';
 
 export const WhyUsSection: React.FC = () => {
-  const statements = [
-    {
-      title: 'DESIGN WITH PURPOSE.',
-      subtitle: 'Form follows emotion and function.',
-      description: 'Visual flair is worthless if it does not sell. Every user journey, layout grid, and typography choice is strategically mapped to command respect from high-value clients.',
-      icon: Target,
-    },
-    {
-      title: 'TECHNOLOGY WITH INTENTION.',
-      subtitle: 'Sub-50ms latency. Zero bloat.',
-      description: 'Underneath our physical glass animations is clean TypeScript, Next.js, and Three.js hardware-accelerated code built to execute flawlessly across devices.',
-      icon: Zap,
-    },
-    {
-      title: 'EXPERIENCES PEOPLE REMEMBER.',
-      subtitle: 'Digital flagships that endure.',
-      description: 'We fuse oversized typography, physical 3D WebGL, and kinetic motion into continuous storytelling that makes your brand impossible to scroll past.',
-      icon: Sparkles,
-    },
-    {
-      title: 'NO COOKIE-CUTTER DIGITAL PRODUCTS.',
-      subtitle: '100% bespoke engineering.',
-      description: 'We never use generic templates or page builder crutches. Every pixel, shader, and interaction is engineered uniquely for your brand strategy.',
-      icon: ShieldCheck,
-    },
+  const [activeItem, setActiveItem] = useState<number | null>(null);
+
+  const manifestoItems = [
+    { word: 'WE QUESTION.', desc: 'Deconstructing existing industry paradigms, technical debt, and superficial design clichés before writing code.' },
+    { word: 'WE EXPERIMENT.', desc: 'Fusing physical materials, 3D WebGL, and unexpected UI behaviors into custom digital interactions.' },
+    { word: 'WE DESIGN.', desc: 'Creating calm quiet luxury interfaces with large typography, generous white space, and editorial hierarchy.' },
+    { word: 'WE ENGINEER.', desc: 'Building high-speed custom code engines, clean schemas, and zero-bloat digital assets.' },
+    { word: 'WE BUILD.', desc: 'Transforming digital presences into long-term compounding business equity for ambitious founders.' },
   ];
 
   return (
-    <section className="py-28 px-8 relative border-t border-[#DCD9D2] bg-[#F5F3EE] overflow-hidden text-[#171717]">
-      <div className="max-w-7xl mx-auto space-y-16">
-        {/* Header */}
-        <div className="max-w-3xl space-y-4">
-          <span className="text-xs font-mono text-[#6F6F6A] uppercase tracking-widest">[ OUR APPROACH ]</span>
-          <h2 className="text-4xl sm:text-6xl font-bold font-display text-[#171717]">
-            THE DIGITAL UNFAIR ADVANTAGE.
-          </h2>
-          <p className="text-[#6F6F6A] text-sm sm:text-base font-light">
-            We don't settle for "good enough". Here is why ambitious founders and brands partner with KINETIX.
+    <section id="about" className="py-36 px-8 relative border-t border-[#242321] bg-[#151514] text-[#F4F1EA] overflow-hidden">
+      {/* Subtle Tactile Grid Pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(rgba(184,179,169,0.12)_0.75px,transparent_0.75px)] [background-size:28px_28px] opacity-40 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto space-y-20 relative z-10">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#242321] pb-8">
+          <div>
+            <span className="text-xs font-mono text-[#9A8064] uppercase tracking-widest">[ 02 // STUDIO MANIFESTO ]</span>
+            <h2 className="text-4xl sm:text-6xl font-semibold font-display text-[#F4F1EA] mt-2 tracking-tight">
+              PHILOSOPHY & MINDSET<span className="text-[#9A8064]">.</span>
+            </h2>
+          </div>
+          <p className="text-[#918B80] text-sm max-w-md leading-relaxed font-normal">
+            We are not a traditional agency. We are a specialized creative technology studio building digital infrastructure for serious enterprises.
           </p>
         </div>
 
-        {/* 4 Large Typography Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {statements.map((st, idx) => {
-            const IconComponent = st.icon;
+        {/* Giant Vertical Manifesto (Prompt Sections 23 & 24) */}
+        <div className="space-y-6">
+          {manifestoItems.map((item, idx) => {
+            const isHovered = activeItem === idx;
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                onMouseEnter={playHoverSound}
-                className="glass-panel p-8 sm:p-10 rounded-3xl border border-[#DCD9D2] space-y-6 glass-panel-hover"
+                onMouseEnter={() => {
+                  playHoverSound();
+                  setActiveItem(idx);
+                }}
+                onMouseLeave={() => setActiveItem(null)}
+                className={`p-8 sm:p-10 rounded-2xl border transition-all duration-500 cursor-pointer ${
+                  isHovered
+                    ? 'bg-[#242321] border-[#9A8064] shadow-2xl translate-x-3'
+                    : 'bg-[#151514]/80 border-[#242321] opacity-70 hover:opacity-100'
+                }`}
               >
-                <div className="flex justify-between items-start">
-                  <div className="w-12 h-12 rounded-xl bg-[#FAF8F5] border border-[#DCD9D2] flex items-center justify-center text-[#171717] shadow-sm">
-                    <IconComponent className="w-5 h-5 text-[#B7A98F]" />
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                  <div className="flex items-baseline gap-6">
+                    <span className="font-mono text-xs font-bold text-[#9A8064]">0{idx + 1}</span>
+                    <h3
+                      className={`font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight transition-colors ${
+                        isHovered ? 'text-[#F4F1EA]' : 'text-[#918B80]'
+                      }`}
+                    >
+                      {item.word}
+                    </h3>
                   </div>
-                  <span className="font-mono text-xs text-[#6F6F6A] font-semibold">0{idx + 1}</span>
-                </div>
 
-                <div className="space-y-2">
-                  <h3 className="text-2xl sm:text-3xl font-bold font-display text-[#171717]">
-                    {st.title}
-                  </h3>
-                  <div className="text-xs font-mono text-[#6F6F6A] font-medium">
-                    {st.subtitle}
-                  </div>
+                  <p className="text-sm text-[#918B80] max-w-md leading-relaxed font-normal">
+                    {item.desc}
+                  </p>
                 </div>
-
-                <p className="text-[#6F6F6A] text-sm font-light leading-relaxed">
-                  {st.description}
-                </p>
               </motion.div>
             );
           })}
+        </div>
+
+        {/* 4 Pillars Summary Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-8 border-t border-[#242321]">
+          {[
+            { tag: 'PRECISION', text: 'Engineering-led architecture over subjective visual opinions.' },
+            { tag: 'INTEGRATION', text: 'Connecting website assets directly with search, analytics, & ad networks.' },
+            { tag: 'ZERO BLOAT', text: 'No bloated page builders. Pure custom code engines.' },
+            { tag: 'COMPOUNDING', text: 'Building long-term digital equity that scales with your business.' },
+          ].map((pillar, i) => (
+            <div key={i} className="p-6 rounded-xl bg-[#242321]/60 border border-[#242321] space-y-2">
+              <span className="font-mono text-[10px] font-bold text-[#9A8064] tracking-widest">{pillar.tag}</span>
+              <p className="text-xs text-[#918B80] leading-relaxed">{pillar.text}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

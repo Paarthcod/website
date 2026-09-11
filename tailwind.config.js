@@ -8,28 +8,45 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Quiet Luxury Palette
+        ivory: '#F4F1EA',
+        stone: '#E5E1D8',
+        warmGrey: '#B8B3A9',
+        taupe: '#918B80',
+        charcoal: '#242321',
+        deepCharcoal: '#151514',
+        softBlack: '#0D0D0C',
+        olive: '#737565',
+        clay: '#A47F68',
+        bronze: '#9A8064',
+        
         bg: {
-          light: '#F5F3EE',
-          dark: '#111214',
-          card: '#FAF8F5',
-          darkCard: '#18191D',
+          light: '#F4F1EA',
+          stone: '#E5E1D8',
+          dark: '#151514',
+          black: '#0D0D0C',
+          card: '#E5E1D8',
+          darkCard: '#242321',
         },
         primary: {
-          DEFAULT: '#171717',
-          light: '#F5F3EE',
+          DEFAULT: '#242321',
+          light: '#F4F1EA',
+          dark: '#151514',
         },
         muted: {
-          DEFAULT: '#6F6F6A',
-          dark: '#9A9A94',
+          DEFAULT: '#918B80',
+          dark: '#B8B3A9',
         },
         accent: {
-          DEFAULT: '#B7A98F',
-          slate: '#A8B4B8',
-          champagne: '#C5B79D',
+          DEFAULT: '#737565',
+          olive: '#737565',
+          clay: '#A47F68',
+          bronze: '#9A8064',
+          slate: '#848B94',
         },
         border: {
-          light: '#DCD9D2',
-          dark: '#26272B',
+          light: '#B8B3A9',
+          dark: '#242321',
         }
       },
       fontFamily: {
